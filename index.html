@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Control LED Arduino</title>
+
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+
+    <main class="contenedor">
+
+        <h1>CONTROL LED ARDUINO</h1>
+
+        <p>Controla un LED desde tu navegador</p>
+
+        <section class="conexion">
+
+            <p id="estadoConexion">
+                Arduino desconectado
+            </p>
+
+            <button id="btnConectar">
+                Conectar Arduino
+            </button>
+
+        </section>
+
+        <section class="panel">
+
+            <!-- Actividad 1 y 3: Mantenemos tu bombilla original, que simularemos azul en la web -->
+            <div id="bombilla" class="bombilla apagado">
+                💡
+            </div>
+
+            <h2 id="estadoLed">LED APAGADO</h2>
+
+            <!-- Actividad 6: Añadimos el contador de veces que se ha encendido -->
+            <p style="font-weight: bold; margin: 15px 0;">
+                Veces encendido: <span id="numEncendidos">0</span>
+            </p>
+
+            <div class="botones">
+
+                <button id="btnEncender"
+                        disabled>
+                    ENCENDER
+                </button>
+
+                <button id="btnApagar"
+                        disabled>
+                    APAGAR
+                </button>
+
+                <!-- Actividad 5: Botón para que empiece a parpadear -->
+                <button id="btnParpadear"
+                        disabled>
+                    PARPADEAR
+                </button>
+
+                <!-- Actividad 4: Botón para encender ambos (LED 1 físico y LED 2 simulado) -->
+                <button id="btnAmbos"
+                        disabled>
+                    ENCENDER AMBOS
+                </button>
+
+            </div>
+
+            <!-- Actividad 7: Control deslizante para regular la luminosidad (PWM) -->
+            <div style="margin: 20px 0;">
+                <label for="brilloRange" style="display: block; margin-bottom: 5px; font-weight: bold;">
+                    Regular luminosidad mediante PWM:
+                </label>
+                <input type="range" id="brilloRange" min="0" max="255" value="255" disabled style="width: 80%;">
+            </div>
+
+            <p id="mensaje">
+                Conecta Arduino para comenzar
+            </p>
+
+        </section>
+
+    </main>
+
+    <!-- Actividad 8: Añadimos el pie de página con tu nombre y el GIF animado -->
+    <footer style="text-align: center; margin-top: 30px; padding: 15px; border-top: 1px solid #ccc;">
+        <p>Proyecto realizado por: <strong>Pablo Diecke López y David Szyrkoviec Cabrera</strong></p>
+        <img src="https://giphy.com" alt="GIF Animado" width="60">
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

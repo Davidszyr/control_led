@@ -1,0 +1,104 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #e8eef5;
+    text-align: center;
+    margin: 0;
+    padding: 30px;
+}
+
+.contenedor {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+h1 {
+    color: #2563eb;
+}
+
+.conexion {
+    background: #f1f5f9;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 25px 0;
+}
+
+.panel {
+    padding: 20px;
+}
+
+.bombilla {
+    font-size: 100px;
+    margin: 20px;
+    transition: all 0.3s ease; /* Suaviza el encendido y apagado */
+}
+
+/* --- ESTADOS DE LA BOMBILLA (Actividad 1: Brillo Azul) --- */
+.apagado {
+    filter: grayscale(1);
+    opacity: 0.4;
+}
+
+.encendido {
+    filter: drop-shadow(0 0 35px #2563eb); /* Filtro de resplandor azul */
+    opacity: 1;
+}
+
+/* --- ESTILOS GENERALES DE LOS BOTONES --- */
+button {
+    padding: 15px 25px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 5px;
+    transition: background 0.2s ease;
+}
+
+/* --- COLORES CUANDO LOS BOTONES ESTÁN ACTIVOS --- */
+#btnConectar {
+    background: #2563eb; /* Azul */
+}
+
+#btnEncender {
+    background: #16a34a; /* Verde */
+}
+
+#btnApagar {
+    background: #dc2626; /* Rojo */
+}
+
+#btnParpadear {
+    background: #ca8a04; /* Dorado / Amarillo oscuro (Actividad 5) */
+}
+
+#btnAmbos {
+    background: #7c3aed; /* Morado (Actividad 4) */
+}
+
+/* --- ESTADO DESCONECTADO (Gris) --- */
+button:disabled {
+    background: #94a3b8 !important; /* Mantiene el gris limpio mientras no conectes */
+    cursor: not-allowed;
+}
+
+#mensaje {
+    margin-top: 25px;
+    font-weight: bold;
+}
+
+/* --- CONTROLES EXTRA --- */
+input[type="range"] {
+    cursor: pointer;
+    margin-top: 10px;
+    width: 80%;
+    accent-color: #2563eb; /* Pone la barra del deslizador en azul */
+}
+
+footer img {
+    vertical-align: middle;
+    margin-left: 10px;
+}
