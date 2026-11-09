@@ -1,10 +1,12 @@
-
 // Variables de comunicacion
 
 let puerto;
 let lector;
 let conectado = false;
 let escribiendo = false;
+
+// Actividad 6: Variable para contar cuántas veces se enciende el LED
+let contadorEncendidos = 0;
 
 // Elementos HTML
 
@@ -16,6 +18,21 @@ const btnEncender =
 
 const btnApagar =
     document.getElementById("btnApagar");
+
+// Nuevos botones de las actividades 5 y 4
+const btnParpadear =
+    document.getElementById("btnParpadear");
+
+const btnAmbos =
+    document.getElementById("btnAmbos");
+
+// Nuevo control deslizante de la actividad 7
+const brilloRange =
+    document.getElementById("brilloRange");
+
+// Nuevo contador de la actividad 6
+const numEncendidos =
+    document.getElementById("numEncendidos");
 
 const estadoConexion =
     document.getElementById("estadoConexion");
@@ -65,8 +82,14 @@ async function conectar() {
 
         btnConectar.disabled = true;
 
+        // Activamos tus botones originales
         btnEncender.disabled = false;
         btnApagar.disabled = false;
+
+        // ACTIVACIÓN DE NUEVOS CONTROLES (Actividades 4, 5 y 7)
+        btnParpadear.disabled = false;
+        btnAmbos.disabled = false;
+        brilloRange.disabled = false;
 
         // Preparar lector de datos
 
@@ -115,18 +138,27 @@ async function leerArduino() {
 
                 const respuesta = linea.trim();
 
+                // Tu código original que lee el Arduino
                 if (respuesta === "ENCENDIDO") {
-
                     mostrarEstado(true);
-
                 }
 
                 if (respuesta === "APAGADO") {
-
                     mostrarEstado(false);
-
                 }
 
+                // Respuestas nuevas añadidas para controlar el estado en la interfaz
+                if (respuesta === "PARPADEO_OK") {
+                    estadoLed.textContent = "MODO PARPADEO ACTIVADO";
+                    mensaje.textContent = "El LED está parpadeando";
+                }
+
+                if (respuesta === "AMBOS_ENCENDIDOS") {
+                    estadoLed.textContent = "AMBOS LEDS ENCENDIDOS";
+                    bombilla.classList.remove("apagado");
+                    bombilla.classList.add("encendido");
+                    mensaje.textContent = "Arduino encendió ambos LEDs";
+                }
             }
 
         }
@@ -179,6 +211,10 @@ async function enviarOrden(orden) {
 btnEncender.addEventListener("click", function() {
 
     enviarOrden("ON");
+    
+    // Actividad 6: Sumamos 1 al contador cada vez que se pulsa encender
+    contadorEncendidos++;
+    numEncendidos.textContent = contadorEncendidos;
 
 });
 
@@ -188,6 +224,38 @@ btnEncender.addEventListener("click", function() {
 btnApagar.addEventListener("click", function() {
 
     enviarOrden("OFF");
+
+});
+
+
+// ACTIVIDAD 5: BOTÓN PARPADEAR
+
+btnParpadear.addEventListener("click", function() {
+
+    enviarOrden("BLINK");
+
+});
+
+
+// ACTIVIDAD 4: BOTÓN ENCENDER AMBOS
+
+btnAmbos.addEventListener("click", function() {
+
+    enviarOrden("AMBOS_ON");
+    
+    // También cuenta como un encendido para el proyecto
+    contadorEncendidos++;
+    numEncendidos.textContent = contadorEncendidos;
+
+});
+
+
+// ACTIVIDAD 7: RECOGER VALOR DEL DESLIZADOR (PWM)
+
+brilloRange.addEventListener("input", function(e) {
+
+    const valorBrillo = e.target.value;
+    enviarOrden("BRIGHT:" + valorBrillo);
 
 });
 
